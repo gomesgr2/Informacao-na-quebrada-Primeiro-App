@@ -45,7 +45,7 @@ def save_podcast(resultado) :
 
 def main() :
     # Realizando autenticação no Spotify for developers
-    sp = spotipy.Spotify(client_credentials_manager = SpotifyClientCredentials(client_id='e459b2ff04c543d5bc21b03762794877', client_secret='4409b2dd45b14511ae64c26f095d59f1'))
+    sp = spotipy.Spotify(client_credentials_manager = SpotifyClientCredentials(client_id='(seu_client_id', client_secret='seu_client_secret'))
 
     #Conexão com o Banco de dados
     cnx = mysql.connector.connect(user='root', password='gabriel2011',host='127.0.0.1',database='aplicativo')
