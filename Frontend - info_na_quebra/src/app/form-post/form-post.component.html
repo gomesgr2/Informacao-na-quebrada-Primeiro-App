@@ -1,0 +1,27 @@
+<h1 mat-dialog-title>Mande sugestões de veículos de notícia da periferia</h1>
+<div mat-dialog-content>
+  <form class="example-form" [formGroup]="FormPost">
+    <mat-form-field class="example-full-width">
+      <mat-label style = "font-size: 1rem;">Nome do veículo :</mat-label>
+        <input matInput formControlName="name" name="name" />
+        </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label style = "font-size: 1rem;">Url :</mat-label>
+        <input matInput formControlName="url" name="url" />
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label style = "font-size: .9rem;">Tipo (Site,Podcast,Blog..) :</mat-label>
+        <input matInput formControlName="tipo"name="tipo" />
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label style = "font-size: .9rem;"> Descrição :</mat-label>
+        <textarea matInput placeholder = "Exemplo : Esse é um podcast que visa discutir arte e cultura na quebrada .." formControlName="descricao" name="descricao"></textarea>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions style = "margin: auto;">
+  <button mat-stroked-button color="primary" (click)="postForm()">
+    Adicionar Sugestão
+  </button>
+  <button mat-stroked-button (click)="cancel()">Cancelar</button>
+</div>
