@@ -97,7 +97,7 @@ class Localizacao(Resource):
         Result = cep.pesquisa_orgao()
         if cep == '' : 
             return {
-            'statusCode': 200 ,
+            'statusCode': 404 ,
                     "Result" : [], 
                  "Validacao_CEP" : '','headers': {
             'Access-Control-Allow-Headers': 'Content-Type',
@@ -106,7 +106,7 @@ class Localizacao(Resource):
             }
         elif not pycep_correios.validate_cep(cep) :
               return {
-            'statusCode': 200 ,
+            'statusCode': 404 ,
                     "Result" : [],
                     "Validacao_CEP" : 'False' ,
                     'headers': {
