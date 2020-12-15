@@ -154,15 +154,18 @@ class OrgaoPublico():
         return url
             
 class Sugestao():
-    def add_sugestion(json):
+    def __init__(self, name,url,tipo,descricao):
+        self.name = name
+        self.url = url
+        self.tipo = tipo
+        self.descricao = descricao
+
+
+    def add_sugestion(self):
         cnx = mysql.connector.connect(user='root', password='',host='127.0.0.1',database='aplicativo')
         cursor = cnx.cursor()
-        "Adiciona sugestão de veículos de noticias em uma tabela mysql"
-        name = json['name']
-        url = json['url']
-        tipo = json['tipo']
-        descricao = json['descricao']
-        cursor.execute(f'INSERT INTO `aplicativo`.`sugestoes` (`name`, `url`, `tipo`, `descricao`) VALUES ("{name}", "{url}", "{tipo}", "{descricao}")')
+        #Adiciona sugestão de veículos de noticias em uma tabela mysql
+        cursor.execute(f'INSERT INTO `aplicativo`.`sugestoes` (`name`, `url`, `tipo`, `descricao`) VALUES ("{self.name}", "{self.url}", "{self.tipo}", "{self.descricao}")')
         cnx.commit()
         cnx.close()
         return "Adicionado com sucesso"

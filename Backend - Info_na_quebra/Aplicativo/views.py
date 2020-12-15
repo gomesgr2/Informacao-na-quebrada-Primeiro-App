@@ -72,10 +72,13 @@ class Sugestoes(Resource):
         pass
     def post(self):
         json_data = request.get_json(force = True) 
-        Result = Sugestao.add_sugestion(json_data)
-        return { 'statusCode': 200 ,
-                    "Result" :
-                     Result, 'headers': {
+        name = json_data['name']
+        url = json_data['url']
+        tipo = json_data['tipo']
+        descricao = json_data['descricao']
+        sugestao = Sugestao(name, url, tipo,descricao)
+        sugestao.add_sugestion()
+        return { 'statusCode': 200 , 'headers': {
             'Access-Control-Allow-Headers': 'Content-Type',
             'Access-Control-Allow-Origin': 'https://localhost:4200',
             'Access-Control-Allow-Methods': 'OPTIONS,POST,GET'} } 
