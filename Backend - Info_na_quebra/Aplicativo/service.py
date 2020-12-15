@@ -164,7 +164,6 @@ class Sugestao():
     def add_sugestion(self):
         cnx = mysql.connector.connect(user='root', password='',host='127.0.0.1',database='aplicativo')
         cursor = cnx.cursor()
-        #Adiciona sugestão de veículos de noticias em uma tabela mysql
         cursor.execute(f'INSERT INTO `aplicativo`.`sugestoes` (`name`, `url`, `tipo`, `descricao`) VALUES ("{self.name}", "{self.url}", "{self.tipo}", "{self.descricao}")')
         cnx.commit()
         cnx.close()
