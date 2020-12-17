@@ -50,7 +50,7 @@ class Sites(Resource):
         site = Site(json_data['data_lancamento'])
 
         # Pesquisando os sites baseado nas datas de lançamento
-        Result = site.pesquisa_site()
+        Result = site.pesquisa_sites()
 
 
 
@@ -93,9 +93,7 @@ class Localizacao(Resource):
         pass
     def post(self):
         json_data = request.get_json(force = True) 
-        cep = OrgaoPublico(json_data["CEP"])
-        Result = cep.pesquisa_orgao()
-        if cep == '' : 
+        if json_data["CEP"] == '' : 
             return {
             'statusCode': 404 ,
                     "Result" : [], 
@@ -104,7 +102,7 @@ class Localizacao(Resource):
             'Access-Control-Allow-Origin': 'https://localhost:4200',
             'Access-Control-Allow-Methods': 'OPTIONS,POST,GET'}
             }
-        elif not pycep_correios.validate_cep(cep) :
+        elif not pycep_correios.validate_cep(json_data["CEP"]) :
               return {
             'statusCode': 404 ,
                     "Result" : [],
@@ -114,7 +112,9 @@ class Localizacao(Resource):
             'Access-Control-Allow-Origin': 'https://localhost:4200',
             'Access-Control-Allow-Methods': 'OPTIONS,POST,GET'}
             }
-        Result = OrgaoPublico.pesquisa_orgao(cep)
+        
+        cep = OrgaoPublico(json_data["CEP"])
+        Result = cep.pesquisa_orgao()
         return {
             'statusCode': 200 ,
                     "Result" :

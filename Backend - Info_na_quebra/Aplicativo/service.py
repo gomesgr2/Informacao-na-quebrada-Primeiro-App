@@ -47,7 +47,7 @@ class Podcasts() :
     
         
         l_json = sorted(l_json, key = lambda k : k['data_lancamento'])
-        l_json = Podcasts.organiza_data(l_json)
+        l_json = organiza_data(l_json)
         
         cnx.close()
         
@@ -68,23 +68,13 @@ class Podcasts() :
         return dados_pod
     
     
-    def organiza_data(lista) :
-        for json in lista :
-            if json['data_lancamento'] == 0 :
-                json['data_lancamento'] = 'Hoje'     
-            elif json['data_lancamento'] == 1:
-                json['data_lancamento'] = 'há ' + str(json['data_lancamento']) + ' dia atrás'
-            
-            else :
-                json['data_lancamento'] = 'há ' + str(json['data_lancamento']) + ' dias atrás'
-        
-        return lista
+    
 
 
 
 
 class Site():
-    def __init__(self, data_lancamento, duracao, autor):
+    def __init__(self, data_lancamento):
         self.data_lancamento = data_lancamento
 
     def pesquisa_sites(self) :
@@ -140,18 +130,7 @@ class OrgaoPublico():
         cnx.close()
         return lst_json
 
-    def route(self, endereco,endereco1) :
-        padrao = "https://www.google.com/maps/dir/"
-        rua = endereco['logradouro']
-        
-        bairro = endereco['bairro']
-
-        cidade = endereco['cidade']
-        
-        uf = endereco['uf']
-
-        url = padrao + rua + ' ' + bairro + ' '+ cidade + uf + '/' + endereco1
-        return url
+    
             
 class Sugestao():
     def __init__(self, name,url,tipo,descricao):
@@ -170,11 +149,30 @@ class Sugestao():
         return "Adicionado com sucesso"
         
         
+def route(endereco,endereco1) :
+        padrao = "https://www.google.com/maps/dir/"
+        rua = endereco['logradouro']
         
+        bairro = endereco['bairro']
+
+        cidade = endereco['cidade']
         
+        uf = endereco['uf']
+
+        url = padrao + rua + ' ' + bairro + ' '+ cidade + uf + '/' + endereco1
+        return url   
         
+def organiza_data(lista) :
+        for json in lista :
+            if json['data_lancamento'] == 0 :
+                json['data_lancamento'] = 'Hoje'     
+            elif json['data_lancamento'] == 1:
+                json['data_lancamento'] = 'há ' + str(json['data_lancamento']) + ' dia atrás'
+            
+            else :
+                json['data_lancamento'] = 'há ' + str(json['data_lancamento']) + ' dias atrás'
         
-        
+        return lista     
         
     
     
